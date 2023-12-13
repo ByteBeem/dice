@@ -2,9 +2,9 @@ const socket = io('https://wood-copper-khaan.glitch.me/');
 
 function rollDice() {
   playDiceRollSound();
-
+  const selectedBet = document.getElementById('bet-dropdown').value;
   
-  socket.emit('rollDice');
+  socket.emit('rollDice', selectedBet);
 }
 
 socket.on('diceRollResult', (randomNumbers) => {
@@ -16,8 +16,6 @@ socket.on('diceRollResult', (randomNumbers) => {
     die.dataset.roll = randomNumbers[index];
   });
 
-  const selectedBet = document.getElementById('bet-dropdown').value;
-  console.log("bet", selectedBet);
 });
 
 function toggleClasses(die) {
