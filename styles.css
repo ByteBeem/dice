@@ -193,6 +193,7 @@ button {
   font-weight: 700;
   justify-self: center;
   padding: 0.5rem 1rem;
+  margin-bottom:60px;
 }
 button:hover {
   cursor: pointer;
