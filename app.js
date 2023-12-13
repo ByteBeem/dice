@@ -1,5 +1,7 @@
 function rollDice() {
   const dice = [...document.querySelectorAll(".die-list")];
+  const selectedBet = document.getElementById('bet-dropdown').value;
+  console.log("bet",selectedBet);
   dice.forEach(die => {
     toggleClasses(die);
     die.dataset.roll = getRandomNumber(1, 6);
