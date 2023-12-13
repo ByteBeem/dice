@@ -203,3 +203,42 @@ button:hover {
     perspective: 1300px;
   }
 }
+
+label {
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+select {
+  font-size: 16px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+/* Style the dropdown arrow */
+select::-ms-expand {
+  display: none;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* Style the dropdown arrow for Firefox */
+select:required:invalid {
+  color: gray;
+}
+
+select option {
+  color: black;
+}
+
+.static-info {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #e5f3af;
+}
