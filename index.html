@@ -80,7 +80,31 @@
         </li>
       </ol>
     </div>
-    <button type="button" id="roll-button">Roll Dice</button>
+    <div>
+    <label for="bet-dropdown">Select Bet:</label>
+    <select id="bet-dropdown">
+      <option value="2.00">R2.00</option>
+      <option value="5.00">R5.00</option>
+      <option value="10.00">R10.00</option>
+      <option value="15.00">R15.00</option>
+      <option value="30.00">R30.00</option>
+      <option value="50.00">R50.00</option>
+      <option value="100.00">R100.00</option>
+    </select>
+  </div>
+
+  <div class="static-info">
+    <h1><p>Winning Combinations:</p></h1>
+    <p>Sum 7: You win if the sum of the two dice is 7.</p>
+    <p>Sum 12: You win if the sum of the two dice is 12.</p>
+    <p>Sum 2: You win if the sum of the two dice is 2.</p>
+    <p>Sum 6: You win if the sum of the two dice is 6.</p>
+    <p>Sum 10: You win if the sum of the two dice is 10.</p>
+
+  </div>
+
+
+  <button type="button" id="roll-button">Roll Dice</button>
     <script src="./app.js"></script>
   </body>
 </html>
