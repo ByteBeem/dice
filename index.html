@@ -150,6 +150,7 @@ function sendTokenToServer() {
         if (response.status === 401) {
           // Alert the user and redirect to www.shopient.co.za
           alert("Token Expired, Go and login again");
+          localStorage.clear();
           window.location.href = "https://www.shopient.co.za";
           throw new Error("Unauthorized");
         }
