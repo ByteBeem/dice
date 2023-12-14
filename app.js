@@ -3,6 +3,7 @@
 
 
 function rollDice() {
+ const storedToken = localStorage.getItem('token');
   playDiceRollSound();
   const selectedBet = document.getElementById('bet-dropdown').value;
 
@@ -13,7 +14,7 @@ function rollDice() {
   dynamicBalance -= parseFloat(selectedBet);
   document.getElementById('balance-amount').textContent = `R${dynamicBalance.toFixed(2)}`;
 
-  socket.emit('rollDice', selectedBet);
+  socket.emit('rollDice', selectedBet , storedToken);
 }
 }
 
