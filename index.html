@@ -150,8 +150,8 @@
         const { decodedToken, userBalance } = data;
 
         
-        dynamicBalance = userBalance;
-        document.getElementById('balance-amount').textContent = `R${dynamicBalance.toFixed(2)}`;
+        
+        document.getElementById('balance-amount').textContent = `R${userBalance.toFixed(2)}`;
       })
       .catch(error => {
         console.error('Error sending token to server:', error);
