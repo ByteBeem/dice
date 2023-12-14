@@ -1,6 +1,6 @@
  const socket = io('https://wood-copper-khaan.glitch.me/');
 
-let dynamicBalance = 680.00;
+
 
 function rollDice() {
   playDiceRollSound();
@@ -38,5 +38,3 @@ function playDiceRollSound() {
 
 document.getElementById("roll-button").addEventListener("click", rollDice);
 
-
-document.getElementById('balance-amount').textContent = `R${dynamicBalance.toFixed(2)}`
