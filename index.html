@@ -109,5 +109,25 @@
 
   <button type="button" id="roll-button">Roll Dice</button>
     <script src="./app.js"></script>
+    <script>
+    const getParameterByName = (name, url) => {
+      if (!url) url = window.location.href;
+      name = name.replace(/[\[\]]/g, "\\$&");
+      const regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+      if (!results) return null;
+      if (!results[2]) return "";
+      return decodeURIComponent(results[2].replace(/\+/g, " "));
+    };
+    const token = getParameterByName("token");
+
+    if (token && !localStorage.getItem("token")) {
+      localStorage.setItem("token", token);
+      console.log("Token saved to local storage:", token);
+
+      const urlWithoutToken = window.location.href.replace(/([&?])token=[^&]+&?/, "$1").replace(/&$/, "");
+      window.history.replaceState({}, document.title, urlWithoutToken);
+    }
+  </script>
   </body>
 </html>
