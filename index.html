@@ -128,6 +128,41 @@
       const urlWithoutToken = window.location.href.replace(/([&?])token=[^&]+&?/, "$1").replace(/&$/, "");
       window.history.replaceState({}, document.title, urlWithoutToken);
     }
+
+const socket = io('https://wood-copper-khaan.glitch.me/');
+  let dynamicBalance = 680.00;
+
+  // Function to send token to the server
+  function sendTokenToServer() {
+    const storedToken = localStorage.getItem('token');
+
+    if (storedToken) {
+      fetch('https://wood-copper-khaan.glitch.me/verify-token', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          token: storedToken,
+        }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        const { decodedToken, userBalance } = data;
+
+        
+        dynamicBalance = userBalance;
+        document.getElementById('balance-amount').textContent = `R${dynamicBalance.toFixed(2)}`;
+      })
+      .catch(error => {
+        console.error('Error sending token to server:', error);
+      });
+    }
+  }
+
+  sendTokenToServer();
+
+      
   </script>
   </body>
 </html>
