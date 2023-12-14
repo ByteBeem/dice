@@ -3,19 +3,22 @@
 
 
 function rollDice() {
- const storedToken = localStorage.getItem('token');
+  const storedToken = localStorage.getItem('token');
   playDiceRollSound();
   const selectedBet = document.getElementById('bet-dropdown').value;
 
-  if(dynamicBalance <= 0 || dynamicBalance < selectedBet){
-    alert("Insufficient balance , please deposit!")
-  }else{
+  const balanceAmountElement = document.getElementById('balance-amount');
+  let dynamicBalance = parseFloat(balanceAmountElement.textContent.replace('R', ''));
 
-  dynamicBalance -= parseFloat(selectedBet);
-  document.getElementById('balance-amount').textContent = `R${dynamicBalance.toFixed(2)}`;
+  if (dynamicBalance <= 0 || dynamicBalance < selectedBet) {
+    alert("Insufficient balance, please deposit!");
+  } else {
+    dynamicBalance -= parseFloat(selectedBet);
+    balanceAmountElement.textContent = `R${dynamicBalance.toFixed(2)}`;
 
-  socket.emit('rollDice', selectedBet , storedToken);
-}
+    // Send the roll request to the server
+    socket.emit('rollDice', selectedBet, storedToken);
+  }
 }
 
 socket.on('diceRollResult', (randomNumbers) => {
