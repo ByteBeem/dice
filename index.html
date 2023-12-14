@@ -129,35 +129,47 @@
       window.history.replaceState({}, document.title, urlWithoutToken);
     }
 
-  let dynamicBalance ;
+let dynamicBalance;
 
-  // Function to send token to the server
-  function sendTokenToServer() {
-    const storedToken = localStorage.getItem('token');
+// Function to send token to the server
+function sendTokenToServer() {
+  const storedToken = localStorage.getItem('token');
 
-    if (storedToken) {
-      fetch('https://wood-copper-khaan.glitch.me/verify-token', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          token: storedToken,
-        }),
+  if (storedToken) {
+    fetch('https://wood-copper-khaan.glitch.me/verify-token', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        token: storedToken,
+      }),
+    })
+      .then(response => {
+        // Check if the response status is 401 (Unauthorized)
+        if (response.status === 401) {
+          // Alert the user and redirect to www.shopient.co.za
+          alert("Token Expired, Go and login again");
+          window.location.href = "https://www.shopient.co.za";
+          throw new Error("Unauthorized");
+        }
+        return response.json();
       })
-      .then(response => response.json())
       .then(data => {
         const { decodedToken, userBalance } = data;
 
-        dynamicBalance=userBalance;
-        
+        dynamicBalance = userBalance;
+
         document.getElementById('balance-amount').textContent = `R${userBalance}`;
       })
       .catch(error => {
-        console.error('Error sending token to server:', error);
+        if (error.message !== "Unauthorized") {
+          console.error('Error sending token to server:', error);
+        }
       });
-    }
   }
+}
+
 
   sendTokenToServer();
 
