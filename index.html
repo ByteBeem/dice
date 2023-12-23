@@ -136,7 +136,7 @@ function sendTokenToServer() {
   const storedToken = localStorage.getItem('token');
 
   if (storedToken) {
-    fetch('https://wood-copper-khaan.glitch.me/verify-token', {
+    fetch('https://spinz-wheel-server-fad3c875d012.herokuapp.com/verify-token', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
