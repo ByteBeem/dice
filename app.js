@@ -1,4 +1,4 @@
- const socket = io('https://spinz-wheel-server-fad3c875d012.herokuapp.com/');
+ const socket = io('https://wheel-servers-7482b31984eb.herokuapp.com/');
 
 
 
